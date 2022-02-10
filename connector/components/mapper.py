@@ -21,7 +21,7 @@ from odoo import models
 from odoo.addons.component.core import AbstractComponent
 from odoo.addons.component.exception import NoComponentError
 
-from ..exception import MappingError
+from ..models.exception import MappingError
 
 _logger = logging.getLogger(__name__)
 
