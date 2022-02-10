@@ -24,7 +24,7 @@ import odoo
 from odoo import _
 
 from odoo.addons.component.core import AbstractComponent
-from odoo.addons.connector.exception import IDMissingInBackend, RetryableJobError
+from odoo.addons.connector.models.exception import IDMissingInBackend, RetryableJobError
 
 _logger = logging.getLogger(__name__)
 
