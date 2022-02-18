@@ -11,9 +11,9 @@ external records into Odoo records and conversely.
 
 """
 
-import collections
-import logging
 from collections import namedtuple
+import collections.abc as collections
+import logging
 from contextlib import contextmanager
 
 from odoo import models
