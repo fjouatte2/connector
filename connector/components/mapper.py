@@ -247,6 +247,8 @@ def external_to_m2o(field, binding=None):
         # if we want the normal record, not a binding,
         # we ask to the binder to unwrap the binding
         unwrap = bool(binding)
+        import pdb
+        pdb.set_trace()
         record = binder.to_internal(rel_id, unwrap=unwrap)
         if not record:
             raise MappingError(
