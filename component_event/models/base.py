@@ -99,8 +99,6 @@ class Base(models.AbstractModel):
 
     @api.model_create_multi
     def create(self, vals_list):
-        import pdb
-        pdb.set_trace()
         records = super(Base, self).create(vals_list)
         for idx, vals in enumerate(vals_list):
             fields = list(vals.keys())
