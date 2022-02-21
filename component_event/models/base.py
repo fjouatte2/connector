@@ -100,6 +100,9 @@ class Base(models.AbstractModel):
     @api.model_create_multi
     def create(self, vals_list):
         records = super(Base, self).create(vals_list)
+        if self._name == 'prestashop.product.template':
+            if 'tags' in vals_list[0]:
+                vals_list[0].pop('tags')
         for idx, vals in enumerate(vals_list):
             fields = list(vals.keys())
             self._event("on_record_create").notify(records[idx], fields=fields)
