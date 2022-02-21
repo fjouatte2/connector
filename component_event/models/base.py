@@ -100,9 +100,9 @@ class Base(models.AbstractModel):
     @api.model_create_multi
     def create(self, vals_list):
         if self._name == 'prestashop.product.template':
-        for index, val in enumerate(vals_list):
-            if 'tags' in val:
-                val.pop('tags')
+            for index, val in enumerate(vals_list):
+                if 'tags' in val:
+                    val.pop('tags')
         records = super(Base, self).create(vals_list)
         for idx, vals in enumerate(vals_list):
             fields = list(vals.keys())
