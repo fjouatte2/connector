@@ -110,6 +110,9 @@ class Base(models.AbstractModel):
         return records
 
     def write(self, vals):
+        if self._name == 'prestashop.product.template':
+            if 'tags' in vals:
+                vals.pop('tags')
         result = super(Base, self).write(vals)
         fields = list(vals.keys())
         for record in self:
