@@ -104,8 +104,9 @@ class Base(models.AbstractModel):
                 if 'tags' in val:
                     val.pop('tags')
         if self._name == 'prestashop.res.partner':
-            import pdb
-            pdb.set_trace()
+            for index, val in enumerate(vals_list):
+                if 'customer' in val:
+                    val.pop('customer')
         records = super(Base, self).create(vals_list)
         for idx, vals in enumerate(vals_list):
             fields = list(vals.keys())
@@ -117,8 +118,8 @@ class Base(models.AbstractModel):
             if 'tags' in vals:
                 vals.pop('tags')
         if self._name == 'prestashop.res.partner':
-            import pdb
-            pdb.set_trace()
+            if 'customer' in vals:
+                vals.pop('customer')
         result = super(Base, self).write(vals)
         fields = list(vals.keys())
         for record in self:
