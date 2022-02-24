@@ -103,7 +103,7 @@ class Base(models.AbstractModel):
             for index, val in enumerate(vals_list):
                 if 'tags' in val:
                     val.pop('tags')
-        if self._name == 'prestashop.res.partner':
+        if self._name in ['prestashop.res.partner', 'prestashop.address']:
             for index, val in enumerate(vals_list):
                 if 'customer' in val:
                     val.pop('customer')
@@ -117,7 +117,7 @@ class Base(models.AbstractModel):
         if self._name == 'prestashop.product.template':
             if 'tags' in vals:
                 vals.pop('tags')
-        if self._name == 'prestashop.res.partner':
+        if self._name in ['prestashop.res.partner', 'prestashop.address']:
             if 'customer' in vals:
                 vals.pop('customer')
         result = super(Base, self).write(vals)
