@@ -109,8 +109,6 @@ class Base(models.AbstractModel):
                 if 'customer' in val:
                     val.pop('customer')
         if self._name == 'prestashop.delivery.carrier':
-            import pdb
-            pdb.set_trace()
             for index, val in enumerate(vals_list):
                 carrier_name = val.get('name', False)
                 if carrier_name:
