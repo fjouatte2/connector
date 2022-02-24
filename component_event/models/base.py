@@ -99,6 +99,7 @@ class Base(models.AbstractModel):
 
     @api.model_create_multi
     def create(self, vals_list):
+        product_model = self.env['product.product']
         if self._name == 'prestashop.product.template':
             for index, val in enumerate(vals_list):
                 if 'tags' in val:
@@ -108,8 +109,13 @@ class Base(models.AbstractModel):
                 if 'customer' in val:
                     val.pop('customer')
         if self._name == 'prestashop.delivery.carrier':
-            import pdb
-            pdb.set_trace()
+            for index, val in enumerate(vals_list):
+                carrier_name = val.get('name', False)
+                if carrier_name:
+                    product_id = product_model.search([('name', '=', carrier_name)])
+                else:
+                    product_id = product_model.create({'name': carrier_name})
+                val.update(product_id=product_id.id)
         records = super(Base, self).create(vals_list)
         for idx, vals in enumerate(vals_list):
             fields = list(vals.keys())
