@@ -107,6 +107,9 @@ class Base(models.AbstractModel):
             for index, val in enumerate(vals_list):
                 if 'customer' in val:
                     val.pop('customer')
+        if self._name == 'prestashop.delivery.carrier':
+            import pdb
+            pdb.set_trace()
         records = super(Base, self).create(vals_list)
         for idx, vals in enumerate(vals_list):
             fields = list(vals.keys())
