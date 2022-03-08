@@ -102,12 +102,15 @@ class Base(models.AbstractModel):
         product_model = self.env['product.product']
         if self._name == 'prestashop.product.template':
             for index, val in enumerate(vals_list):
-                if 'tags' in val:
-                    val.pop('tags')
+                val.update(
+                    website_description=val.pop('description', False),
+                    short_description=val.pop('description_short_html', False),
+                    long_description=val.pop('description_html', False),
+                )
+                val.pop('tags', False)
         if self._name in ['prestashop.res.partner', 'prestashop.address']:
             for index, val in enumerate(vals_list):
-                if 'customer' in val:
-                    val.pop('customer')
+                val.pop('customer', False)
         if self._name == 'prestashop.delivery.carrier':
             for index, val in enumerate(vals_list):
                 carrier_name = val.get('name', False)
@@ -124,11 +127,14 @@ class Base(models.AbstractModel):
 
     def write(self, vals):
         if self._name == 'prestashop.product.template':
-            if 'tags' in vals:
-                vals.pop('tags')
+            vals.pop('tags', False)
+            vals.update(
+                website_description=vals.pop('description', False),
+                short_description=vals.pop('description_short_html', False),
+                long_description=vals.pop('description_html', False),
+            )
         if self._name in ['prestashop.res.partner', 'prestashop.address']:
-            if 'customer' in vals:
-                vals.pop('customer')
+            vals.pop('customer', False)
         result = super(Base, self).write(vals)
         fields = list(vals.keys())
         for record in self:
