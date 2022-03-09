@@ -103,8 +103,6 @@ class Base(models.AbstractModel):
         if self._name == 'prestashop.product.template':
             for index, val in enumerate(vals_list):
                 val.pop('tags', False)
-            import pdb
-            pdb.set_trace()
         if self._name in ['prestashop.res.partner', 'prestashop.address']:
             for index, val in enumerate(vals_list):
                 val.pop('customer', False)
