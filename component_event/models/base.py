@@ -100,12 +100,7 @@ class Base(models.AbstractModel):
     @api.model_create_multi
     def create(self, vals_list):
         product_model = self.env['product.product']
-        if self._name == 'product.template':
-            import pdb
-            pdb.set_trace()
         if self._name == 'prestashop.product.template':
-            import pdb
-            pdb.set_trace()
             for index, val in enumerate(vals_list):
                 val.pop('tags', False)
         if self._name in ['prestashop.res.partner', 'prestashop.address']:
