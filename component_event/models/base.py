@@ -123,11 +123,6 @@ class Base(models.AbstractModel):
     def write(self, vals):
         if self._name == 'prestashop.product.template':
             vals.pop('tags', False)
-            vals.update(
-                website_description=vals.pop('description', False),
-                short_description=vals.pop('description_short_html', False),
-                long_description=vals.pop('description_html', False),
-            )
         if self._name in ['prestashop.res.partner', 'prestashop.address']:
             vals.pop('customer', False)
         result = super(Base, self).write(vals)
