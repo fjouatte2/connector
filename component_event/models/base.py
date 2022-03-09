@@ -102,14 +102,9 @@ class Base(models.AbstractModel):
         product_model = self.env['product.product']
         if self._name == 'prestashop.product.template':
             for index, val in enumerate(vals_list):
-                """
-                val.update(
-                    website_description=val.pop('description', False),
-                    short_description=val.pop('description_short_html', False),
-                    long_description=val.pop('description_html', False),
-                )
-                """
                 val.pop('tags', False)
+            import pdb
+            pdb.set_trace()
         if self._name in ['prestashop.res.partner', 'prestashop.address']:
             for index, val in enumerate(vals_list):
                 val.pop('customer', False)
